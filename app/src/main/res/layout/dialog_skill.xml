@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="10dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/skillName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Skills Name"
+        android:textColor="@color/black"
+        android:textSize="30sp" />
+
+    <ImageView
+        android:id="@+id/skillImage"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_below="@id/skillName"
+        android:scaleType="centerCrop"
+        android:src="@drawable/image" />
+
+    <TextView
+        android:id="@+id/skillDesc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/skillImage"
+        android:text="Skills Desc"
+        android:textIsSelectable="true"
+        android:layout_marginTop="5dp"
+        android:layout_above="@id/btnNext"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/btnNext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Next"
+        android:layout_alignParentBottom="true"
+        app:backgroundTint="@null"
+        android:background="@drawable/btn_border"
+        android:layout_alignParentEnd="true"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+
+
+</RelativeLayout>
