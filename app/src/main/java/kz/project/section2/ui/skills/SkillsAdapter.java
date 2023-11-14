@@ -19,12 +19,10 @@ import kz.project.section2.R;
 public class SkillsAdapter extends RecyclerView.Adapter<SkillsAdapter.ViewHolder> {
     private Context context;
     private List<SkillType> eventsItemList;
-    private ItemClick itemClick;
 
-    public SkillsAdapter(Context context, List<SkillType> eventsItemList, ItemClick itemClick) {
+    public SkillsAdapter(Context context, List<SkillType> eventsItemList) {
         this.context = context;
         this.eventsItemList = eventsItemList;
-        this.itemClick = itemClick;
     }
 
     @NonNull
@@ -55,16 +53,6 @@ public class SkillsAdapter extends RecyclerView.Adapter<SkillsAdapter.ViewHolder
             super(itemView);
             skillType = itemView.findViewById(R.id.skillType);
             skillItems = itemView.findViewById(R.id.skillItems);
-
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    int pos = getAdapterPosition();
-                    if (pos != RecyclerView.NO_POSITION) {
-                        itemClick.onItemClick(pos);
-                    }
-                }
-            });
         }
     }
 }

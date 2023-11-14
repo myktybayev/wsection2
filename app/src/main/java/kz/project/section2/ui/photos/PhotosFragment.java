@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,19 +24,18 @@ import kz.project.section2.ui.skills.SkillItem;
 import kz.project.section2.ui.skills.SkillType;
 import kz.project.section2.ui.skills.SkillsAdapter;
 
-public class PhotosFragment extends Fragment{
-    LinearLayout linearTvs;
+public class PhotosFragment extends Fragment {
     View view;
     RecyclerView recyclerView;
     TextView nFirst, nLast, firstDot, nCenterPre, nCenter, nCenterNext, lastDot;
     PhotosAdapter photosAdapter;
+    List<PhotoItem> photoItemListAll = new ArrayList<>();
     List<PhotoItem> photoItemList = new ArrayList<>();
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         view = inflater.inflate(R.layout.fragment_photos, container, false);
         recyclerView = view.findViewById(R.id.recyclerView);
-        linearTvs = view.findViewById(R.id.linearTvs);
 
         nFirst = view.findViewById(R.id.nFirst);
         firstDot = view.findViewById(R.id.firstDot);
@@ -45,22 +45,56 @@ public class PhotosFragment extends Fragment{
         lastDot = view.findViewById(R.id.lastDot);
         nLast = view.findViewById(R.id.nLast);
 
-        photoItemList.add(new PhotoItem(" ", "popularity", "visit"));
-        photoItemList.add(new PhotoItem(" ", "popularity", "visit"));
-        photoItemList.add(new PhotoItem(" ", "popularity", "visit"));
+        photoItemListAll.add(new PhotoItem(1, " ", "popularity: 230", "visit: 3500"));
+        photoItemListAll.add(new PhotoItem(2, " ", "popularity: 330", "visit: 3600"));
+        photoItemListAll.add(new PhotoItem(3, " ", "popularity: 430", "visit: 3700"));
+        photoItemListAll.add(new PhotoItem(4, " ", "popularity: 530", "visit: 3800"));
+        photoItemListAll.add(new PhotoItem(5, " ", "popularity: 630", "visit: 3900"));
+        photoItemListAll.add(new PhotoItem(6, " ", "popularity: 630", "visit: 3400"));
 
-        photosAdapter = new PhotosAdapter(getContext(), photoItemList);
+        photoItemListAll.add(new PhotoItem(7, " ", "popularity: 700", "visit: 3400"));
+        photoItemListAll.add(new PhotoItem(8, " ", "popularity: 710", "visit: 3400"));
+        photoItemListAll.add(new PhotoItem(9, " ", "popularity: 720", "visit: 3400"));
+        photoItemListAll.add(new PhotoItem(10, " ", "popularity: 730", "visit: 3400"));
+        photoItemListAll.add(new PhotoItem(11, " ", "popularity: 740", "visit: 3400"));
+        photoItemListAll.add(new PhotoItem(12, " ", "popularity: 750", "visit: 3400"));
+
+        photoItemListAll.add(new PhotoItem(13, " ", "popularity: 13", "visit: 3400"));
+        photoItemListAll.add(new PhotoItem(14, " ", "popularity: 14", "visit: 3400"));
+        photoItemListAll.add(new PhotoItem(15, " ", "popularity: 15", "visit: 3400"));
+
+        photoItemListAll.add(new PhotoItem(19, " ", "popularity: 19", "visit: 3400"));
+        photoItemListAll.add(new PhotoItem(20, " ", "popularity: 20", "visit: 3400"));
+        photoItemListAll.add(new PhotoItem(21, " ", "popularity: 21", "visit: 3400"));
+
+
+        photosAdapter = new PhotosAdapter(getActivity(), photoItemList);
         recyclerView.setAdapter(photosAdapter);
+        loadData(1);
 
         navigation();
         return view;
     }
 
-    public void navigation(){
-        int pageSize = 20;
-        nLast.setText(""+pageSize);
+    public void loadData(int page) {
+        photoItemList.clear();
+        int second = page * 6;//6
+        int first = second - 6;//0
+
+        for (PhotoItem photoItem : photoItemListAll) {
+            if (photoItem.getPhotoId() > first && photoItem.getPhotoId() <= second) {
+                photoItemList.add(photoItem);
+            }
+        }
+
+        photosAdapter.notifyDataSetChanged();
+    }
+
+    public void navigation() {
+        int pageSize = 15;
+        nLast.setText("" + pageSize);
         int centerN1 = 4;
-        int centerN2 = pageSize-2;
+        int centerN2 = pageSize - 2;
 
         String tv_texts[] = {
                 " ",//0
@@ -105,6 +139,28 @@ public class PhotosFragment extends Fragment{
                 "1,...,e,18,19,eee,20",//20,
         };
 
+        //page size = 25;
+        String tv_texts15[] = {
+                " ",//0
+                "1,eee,2,3,e,...,15",//1,
+                "1,eee,2,3,e,...,15",//2,
+                "1,eee,2,3,4,...,15",//3,
+
+                "1,...,3,4,5,...,15",//4,
+                "1,...,4,5,6,...,15",//5,
+                "1,...,5,6,7,...,15",//6,
+                "1,...,6,7,8,...,15",//7,
+                "1,...,7,8,9,...,15",//9,
+                "1,...,8,9,10,...,15",//9,
+                "1,...,9,10,11,...,15",//10,
+                "1,...,10,11,12,...,15",//11,
+                "1,...,11,12,13,...,15",//12,
+
+                "1,...,12,13,14,eee,15",//13,
+                "1,...,e,13,14,eee,15",//14,
+                "1,...,e,13,14,eee,15",//15,
+        };
+
         TextView textviews[] = {nFirst, firstDot, nCenterPre, nCenter, nCenterNext, lastDot, nLast};
         View.OnClickListener tv_click2 = new View.OnClickListener() {
             @Override
@@ -112,17 +168,20 @@ public class PhotosFragment extends Fragment{
                 byDefault();
                 String tv_text = ((TextView) view).getText().toString();
                 int tv_number = Integer.parseInt(tv_text);
-                String curT[] = tv_texts1[tv_number].split(",");
 
-                if(tv_number>=centerN1 && tv_number<=centerN2){
+
+                String curT[] = tv_texts15[tv_number].split(",");
+
+                loadData(tv_number);
+
+                if (tv_number >= centerN1 && tv_number <= centerN2) {
                     nCenter.setBackgroundColor(getActivity().getColor(R.color.grey));
-                }else{
+                } else {
                     view.setBackgroundColor(getActivity().getColor(R.color.grey));
                 }
 
                 for (int i = 0; i <= 6; i++) {
                     textviews[i].setText(curT[i]);
-                    Log.i("tv_click2", "tv_click2: "+curT[i]);
                     if (curT[i].contains("e")) {
                         textviews[i].setVisibility(View.GONE);
                     }
@@ -153,95 +212,4 @@ public class PhotosFragment extends Fragment{
         nLast.setBackgroundColor(getActivity().getColor(R.color.white));
 
     }
-
 }
-
-/*
-
-        View.OnClickListener tv_click = new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                byDefault();
-                String tv_text = ((TextView) view).getText().toString();
-                int tv_number = Integer.parseInt(tv_text);
-
-                if (tv_number == 1) {
-                    view.setBackgroundColor(getActivity().getColor(R.color.grey));
-
-                    firstDot.setVisibility(View.GONE);
-                    lastDot.setVisibility(View.VISIBLE);
-
-                    nCenterPre.setVisibility(View.VISIBLE);
-                    nCenter.setVisibility(View.VISIBLE);
-                    nCenterNext.setVisibility(View.GONE);
-
-                    nCenterPre.setText("" + (tv_number + 1));
-                    nCenter.setText("" + (tv_number + 2));
-
-                } else if (tv_number == 2) {
-                    view.setBackgroundColor(getActivity().getColor(R.color.grey));
-
-                    firstDot.setVisibility(View.GONE);
-                    lastDot.setVisibility(View.VISIBLE);
-
-                    nCenterPre.setVisibility(View.VISIBLE);
-                    nCenter.setVisibility(View.VISIBLE);
-                    nCenterNext.setVisibility(View.GONE);
-
-                    nCenterPre.setText("" + (tv_number));
-                    nCenter.setText("" + (tv_number + 1));
-
-                } else if (tv_number == 3) {
-
-                    firstDot.setVisibility(View.GONE);
-                    lastDot.setVisibility(View.VISIBLE);
-
-                    nCenterPre.setVisibility(View.VISIBLE);
-                    nCenterNext.setVisibility(View.VISIBLE);
-
-                    nCenterPre.setText("" + (tv_number - 1));
-                    nCenter.setText("" + (tv_number));
-                    nCenterNext.setText("" + (tv_number + 1));
-                    nCenter.setBackgroundColor(getActivity().getColor(R.color.grey));
-
-                } else if (tv_number >= 4 && tv_number <= 7) {
-                    firstDot.setVisibility(View.VISIBLE);
-                    lastDot.setVisibility(View.VISIBLE);
-
-                    nCenterPre.setText("" + (tv_number - 1));
-                    nCenter.setText("" + tv_number);
-                    nCenter.setBackgroundColor(getActivity().getColor(R.color.grey));
-                    nCenterNext.setText("" + (tv_number + 1));
-
-                } else if (tv_number == 8) {
-                    lastDot.setVisibility(View.GONE);
-                    nCenterPre.setVisibility(View.VISIBLE);
-
-                    nCenterPre.setText("" + (tv_number - 1));
-                    nCenter.setText("" + tv_number);
-                    nCenter.setBackgroundColor(getActivity().getColor(R.color.grey));
-                    nCenterNext.setText("" + (tv_number + 1));
-
-                } else if (tv_number == 9) {
-                    lastDot.setVisibility(View.GONE);
-                    nCenterPre.setVisibility(View.GONE);
-
-                    nCenterNext.setVisibility(View.VISIBLE);
-                    view.setBackgroundColor(getActivity().getColor(R.color.grey));
-
-                } else if (tv_number == 10) {
-                    view.setBackgroundColor(getActivity().getColor(R.color.grey));
-
-                    firstDot.setVisibility(View.VISIBLE);
-                    lastDot.setVisibility(View.GONE);
-                    nCenterPre.setVisibility(View.GONE);
-
-                    nCenter.setVisibility(View.VISIBLE);
-                    nCenterNext.setVisibility(View.VISIBLE);
-
-                    nCenter.setText("" + (tv_number - 2));
-                    nCenterNext.setText("" + (tv_number - 1));
-                }
-            }
-        };
- */

@@ -1,14 +1,26 @@
 package kz.project.section2.ui.photos;
 
-public class PhotoItem {
+import java.io.Serializable;
+
+public class PhotoItem implements Serializable {
+    int photoId;
     String imagePath;
     String popularity;
     String visit;
 
-    public PhotoItem(String imagePath, String popularity, String visit) {
+    public PhotoItem(int photoId, String imagePath, String popularity, String visit) {
+        this.photoId = photoId;
         this.imagePath = imagePath;
         this.popularity = popularity;
         this.visit = visit;
+    }
+
+    public int getPhotoId() {
+        return photoId;
+    }
+
+    public void setPhotoId(int photoId) {
+        this.photoId = photoId;
     }
 
     public String getImagePath() {

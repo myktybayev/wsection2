@@ -17,7 +17,7 @@ import java.util.List;
 
 import kz.project.section2.R;
 
-public class SkillsFragment extends Fragment implements ItemClick {
+public class SkillsFragment extends Fragment{
 
     TextView textView;
     SkillsAdapter skillsAdapter;
@@ -50,18 +50,12 @@ public class SkillsFragment extends Fragment implements ItemClick {
         skillTypeArrayList.add(new SkillType("Lesson2", skillItemList2));
         skillTypeArrayList.add(new SkillType("Lesson3", skillItemList));
 
-        skillsAdapter = new SkillsAdapter(getContext(), skillTypeArrayList, this::onItemClick);
+        skillsAdapter = new SkillsAdapter(getContext(), skillTypeArrayList);
 
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
-        recyclerView.setLayoutManager(mLayoutManager);
+//        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
+//        recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setAdapter(skillsAdapter);
 
         return view;
     }
-
-    @Override
-    public void onItemClick(int pos) {
-        Toast.makeText(getActivity(), "Pos :" + pos + " " + skillTypeArrayList.get(pos).getSkillType(), Toast.LENGTH_SHORT).show();
-    }
-
 }

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -87,7 +88,9 @@ public class PhotosAdapter extends RecyclerView.Adapter<PhotosAdapter.ViewHolder
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Toast.makeText(itemView.getContext(), "Position is " + getAdapterPosition(), Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(context, ImageWebViewActivity.class);
+                    intent.putExtra("key", photoItemList.get(getAdapterPosition()));
+                    context.startActivity(intent);
                 }
             });
 
@@ -102,13 +105,12 @@ public class PhotosAdapter extends RecyclerView.Adapter<PhotosAdapter.ViewHolder
 
                             Intent sendIntent = new Intent();
                             sendIntent.setAction(Intent.ACTION_SEND);
-                            sendIntent.putExtra(Intent.EXTRA_TEXT, "Image link");
+                            sendIntent.putExtra(Intent.EXTRA_TEXT, "Image link: "+photoItemList.get(getAdapterPosition()).getImagePath());
                             sendIntent.setType("text/plain");
 
                             Intent shareIntent = Intent.createChooser(sendIntent, null);
                             context.startActivity(shareIntent);
 
-                            Toast.makeText(context, "Long click: "+photoItemList.get(getAdapterPosition()).getPopularity(), Toast.LENGTH_SHORT).show();
                             return true;
                         }
                     });

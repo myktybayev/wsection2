@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="10dp"
     android:orientation="vertical">
 
     <TextView
         android:id="@+id/event1"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_margin="10dp"
+        android:layout_height="wrap_content"
         android:background="@color/title_grey"
-        android:paddingLeft="10dp"
+        android:padding="20dp"
         android:text="Photos"
         android:textColor="@color/white"
         android:textSize="30sp" />
@@ -22,29 +20,25 @@
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/linearTvs"
-        android:layout_below="@id/event1"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginBottom="100dp"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:spanCount="3"
         tools:listitem="@layout/item_photos" />
 
     <LinearLayout
         android:id="@+id/linearTvs"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_alignParentBottom="true"
-        android:layout_margin="10dp"
-        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center"
+        android:layout_marginBottom="30dp"
         android:orientation="horizontal">
 
         <TextView
             android:id="@+id/nFirst"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:background="@color/grey"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
@@ -56,19 +50,19 @@
         <TextView
             android:id="@+id/firstDot"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:text="..."
-            android:visibility="gone"
             android:textColor="@color/black"
             android:textSize="30dp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/nCenterPre"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:text="2"
@@ -79,7 +73,7 @@
         <TextView
             android:id="@+id/nCenter"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:text="3"
@@ -90,7 +84,8 @@
         <TextView
             android:id="@+id/nCenterNext"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:text="4"
@@ -102,7 +97,7 @@
         <TextView
             android:id="@+id/lastDot"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:text="..."
@@ -113,9 +108,7 @@
         <TextView
             android:id="@+id/nLast"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
+            android:layout_height="wrap_content"
             android:text="10"
             android:textColor="@color/black"
             android:textSize="30dp"
@@ -123,4 +116,5 @@
 
     </LinearLayout>
 
-</RelativeLayout>
+
+</FrameLayout>

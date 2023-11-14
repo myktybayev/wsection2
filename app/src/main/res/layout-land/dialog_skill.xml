@@ -14,24 +14,27 @@
         android:textColor="@color/black"
         android:textSize="30sp" />
 
-    <ImageView
-        android:id="@+id/skillImage"
-        android:layout_width="350dp"
-        android:layout_height="300dp"
-        android:layout_below="@id/skillName"
-        android:scaleType="centerCrop"
-        android:src="@drawable/image" />
-
     <TextView
         android:id="@+id/skillDesc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/skillImage"
+        android:layout_below="@id/skillName"
         android:text="Skills Desc"
+        android:layout_toLeftOf="@id/skillImage"
         android:textIsSelectable="true"
         android:layout_marginTop="5dp"
         android:layout_above="@id/btnNext"
         android:textSize="18sp" />
+
+    <ImageView
+        android:id="@+id/skillImage"
+        android:layout_width="250dp"
+        android:layout_height="200dp"
+        android:layout_below="@id/skillName"
+        android:layout_alignParentRight="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/image" />
+
 
     <Button
         android:id="@+id/btnNext"

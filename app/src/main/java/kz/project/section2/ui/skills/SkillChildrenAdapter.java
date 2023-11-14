@@ -42,23 +42,14 @@ public class SkillChildrenAdapter extends RecyclerView.Adapter<SkillChildrenAdap
         holder.skillName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                /*
-                holder.skillDialogName.setText(eventsItemList.get(position).getTitle());
-                holder.skillDesc.setText(eventsItemList.get(position).getDesc());
-
-                String imagefile = eventsItemList.get(position).getImagePath();
-                String resName = imagefile.split("\\.")[2];
-
-                holder.skillImage.setImageResource(
-                        context.getResources().getIdentifier(
-                                resName,
-                                "drawable", context.getPackageName()));
-
-                 */
                 setDialogInfo(holder, position);
                 holder.dialog.show();
                 dPos = 0;
+
+                if(position+dPos == eventsItemList.size()-1){
+                    holder.btnNext.setTextColor(context.getResources().getColor(R.color.grey));
+                    holder.btnNext.setEnabled(false);
+                }
 
                 holder.btnNext.setOnClickListener(new View.OnClickListener() {
                     @Override
