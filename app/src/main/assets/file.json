@@ -1,0 +1,42 @@
+[
+  {
+    "title": "Design",
+    "array": [
+      {
+        "title": "Adobe XD",
+        "desc": "Adobe XD Desc",
+        "imagePath": "https://play-lh.googleusercontent.com/kaox1VteLsWAuNxPxhm8t4llaoyFhxzDjo9g4Hdf92bKdT_Sn6Yrdku6rApuc5ktirw"
+      },
+      {
+        "title": "Adobe Photoshop",
+        "desc": "Adobe Photoshop dec",
+        "imagePath": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Adobe_Photoshop_CC_icon.svg/2101px-Adobe_Photoshop_CC_icon.svg.png"
+      },
+      {
+        "title": "Adobe illustrator",
+        "desc": "Adobe illustrator desc",
+        "imagePath": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Adobe_Illustrator_CC_icon.svg/2101px-Adobe_Illustrator_CC_icon.svg.png"
+      }
+    ]
+  },
+  {
+    "title": "Android",
+    "array": [
+      {
+        "title": "Android Studio",
+        "desc": "Android Studio Desc",
+        "imagePath": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Android_Studio_icon_%282023%29.svg/2048px-Android_Studio_icon_%282023%29.svg.png"
+      },
+      {
+        "title": "Visual Studio",
+        "desc": "Visual Studio dec",
+        "imagePath": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Visual_Studio_Icon_2022.svg/2048px-Visual_Studio_Icon_2022.svg.png"
+      },
+      {
+        "title": "InteliJ Idea",
+        "desc": "InteliJ Idea desc",
+        "imagePath": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/IntelliJ_IDEA_Icon.svg/1024px-IntelliJ_IDEA_Icon.svg.png"
+      }
+    ]
+  }
+]

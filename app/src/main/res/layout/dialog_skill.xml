@@ -14,13 +14,11 @@
         android:textColor="@color/black"
         android:textSize="30sp" />
 
-    <ImageView
+    <WebView
         android:id="@+id/skillImage"
         android:layout_width="350dp"
         android:layout_height="300dp"
-        android:layout_below="@id/skillName"
-        android:scaleType="centerCrop"
-        android:src="@drawable/image" />
+        android:layout_below="@id/skillName"/>
 
     <TextView
         android:id="@+id/skillDesc"

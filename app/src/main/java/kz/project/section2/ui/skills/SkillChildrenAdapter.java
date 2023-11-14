@@ -2,9 +2,12 @@ package kz.project.section2.ui.skills;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -13,6 +16,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.net.URL;
 import java.util.List;
 
 import kz.project.section2.R;
@@ -46,7 +50,7 @@ public class SkillChildrenAdapter extends RecyclerView.Adapter<SkillChildrenAdap
                 holder.dialog.show();
                 dPos = 0;
 
-                if(position+dPos == eventsItemList.size()-1){
+                if (position + dPos == eventsItemList.size() - 1) {
                     holder.btnNext.setTextColor(context.getResources().getColor(R.color.grey));
                     holder.btnNext.setEnabled(false);
                 }
@@ -55,12 +59,12 @@ public class SkillChildrenAdapter extends RecyclerView.Adapter<SkillChildrenAdap
                     @Override
                     public void onClick(View view) {
                         dPos++;
-                        if(position+dPos == eventsItemList.size()-1){
+                        if (position + dPos == eventsItemList.size() - 1) {
                             holder.btnNext.setTextColor(context.getResources().getColor(R.color.grey));
                             holder.btnNext.setEnabled(false);
                         }
 
-                        setDialogInfo(holder, position+dPos);
+                        setDialogInfo(holder, position + dPos);
                     }
                 });
 
@@ -68,26 +72,21 @@ public class SkillChildrenAdapter extends RecyclerView.Adapter<SkillChildrenAdap
         });
 
     }
+
     int dPos = 0;
 
-    public void setDialogInfo(ViewHolder holder, int position){
+    public void setDialogInfo(ViewHolder holder, int position) {
         holder.skillDialogName.setText(eventsItemList.get(position).getTitle());
         holder.skillDesc.setText(eventsItemList.get(position).getDesc());
 
-        String imagefile = eventsItemList.get(position).getImagePath();
-        String resName = imagefile.split("\\.")[2];
-
-        holder.skillImage.setImageResource(
-                context.getResources().getIdentifier(
-                        resName,
-                        "drawable", context.getPackageName()));
-
-
-        if(position+dPos == eventsItemList.size()-1){
+        if (position + dPos == eventsItemList.size()) {
             holder.btnNext.setTextColor(context.getResources().getColor(R.color.grey));
             holder.btnNext.setEnabled(false);
         }
 
+        holder.skillImage.loadUrl(eventsItemList.get(position).getImagePath());
+        holder.skillImage.getSettings().setLoadWithOverviewMode(true);
+        holder.skillImage.getSettings().setUseWideViewPort(true);
     }
 
     @Override
@@ -100,7 +99,7 @@ public class SkillChildrenAdapter extends RecyclerView.Adapter<SkillChildrenAdap
         Dialog dialog;
 
         TextView skillDialogName;
-        ImageView skillImage;
+        WebView skillImage;
         TextView skillDesc;
         Button btnNext;
 
