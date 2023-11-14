@@ -15,6 +15,11 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,31 +50,32 @@ public class PhotosFragment extends Fragment {
         lastDot = view.findViewById(R.id.lastDot);
         nLast = view.findViewById(R.id.nLast);
 
+        /*
         photoItemListAll.add(new PhotoItem(1, " ", "popularity: 230", "visit: 3500"));
         photoItemListAll.add(new PhotoItem(2, " ", "popularity: 330", "visit: 3600"));
         photoItemListAll.add(new PhotoItem(3, " ", "popularity: 430", "visit: 3700"));
         photoItemListAll.add(new PhotoItem(4, " ", "popularity: 530", "visit: 3800"));
         photoItemListAll.add(new PhotoItem(5, " ", "popularity: 630", "visit: 3900"));
         photoItemListAll.add(new PhotoItem(6, " ", "popularity: 630", "visit: 3400"));
-
         photoItemListAll.add(new PhotoItem(7, " ", "popularity: 700", "visit: 3400"));
         photoItemListAll.add(new PhotoItem(8, " ", "popularity: 710", "visit: 3400"));
         photoItemListAll.add(new PhotoItem(9, " ", "popularity: 720", "visit: 3400"));
         photoItemListAll.add(new PhotoItem(10, " ", "popularity: 730", "visit: 3400"));
         photoItemListAll.add(new PhotoItem(11, " ", "popularity: 740", "visit: 3400"));
         photoItemListAll.add(new PhotoItem(12, " ", "popularity: 750", "visit: 3400"));
-
         photoItemListAll.add(new PhotoItem(13, " ", "popularity: 13", "visit: 3400"));
         photoItemListAll.add(new PhotoItem(14, " ", "popularity: 14", "visit: 3400"));
         photoItemListAll.add(new PhotoItem(15, " ", "popularity: 15", "visit: 3400"));
-
         photoItemListAll.add(new PhotoItem(19, " ", "popularity: 19", "visit: 3400"));
         photoItemListAll.add(new PhotoItem(20, " ", "popularity: 20", "visit: 3400"));
         photoItemListAll.add(new PhotoItem(21, " ", "popularity: 21", "visit: 3400"));
+        */
 
+        getFromJsonFile();
 
         photosAdapter = new PhotosAdapter(getActivity(), photoItemList);
         recyclerView.setAdapter(photosAdapter);
+
         loadData(1);
 
         navigation();
@@ -88,6 +94,47 @@ public class PhotosFragment extends Fragment {
         }
 
         photosAdapter.notifyDataSetChanged();
+    }
+
+    public void getFromJsonFile() {
+        String json = null;
+        try {
+            InputStream is = getActivity().getAssets().open("photo_file.json");
+            int size = is.available();
+            byte[] buffer = new byte[size];
+
+            is.read(buffer);
+            is.close();
+            json = new String(buffer, "UTF-8");
+
+            createModelFromFile(json);
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+    
+    public void createModelFromFile(String json) {
+        try {
+            JSONArray objArray = new JSONArray(json);
+
+            for (int i = 0; i < objArray.length(); i++) {
+                JSONObject jo_inside = objArray.getJSONObject(i);
+
+                int photoId = jo_inside.getInt("photoId");
+                String imagePath = jo_inside.getString("imagePath");
+                int popularity = jo_inside.getInt("popularity");
+                int visit = jo_inside.getInt("visit");
+
+                photoItemListAll.add(new PhotoItem(photoId, imagePath, "popularity: "+popularity, "visit: "+visit));
+
+            }
+
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void navigation() {

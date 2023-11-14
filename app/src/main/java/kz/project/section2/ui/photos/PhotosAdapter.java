@@ -46,23 +46,13 @@ public class PhotosAdapter extends RecyclerView.Adapter<PhotosAdapter.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        Thread thread = new Thread(new Runnable() {
+        String imagefile = photoItemList.get(position).getImagePath();
+        String resName = imagefile.split("\\.")[2];
 
-            @Override
-            public void run() {
-                try {
-                    URL newurl = new URL("https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHx8MA%3D%3D");
-                    Bitmap mIcon_val = BitmapFactory.decodeStream(newurl.openConnection().getInputStream());
-                    holder.im_photo.setImageBitmap(mIcon_val);
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-
-        thread.start();
-
+        holder.im_photo.setImageResource(
+                context.getResources().getIdentifier(
+                        resName,
+                        "drawable", context.getPackageName()));
 
         holder.tv_popularity.setText(photoItemList.get(position).getPopularity());
         holder.tv_visit.setText(photoItemList.get(position).getVisit());
@@ -89,7 +79,7 @@ public class PhotosAdapter extends RecyclerView.Adapter<PhotosAdapter.ViewHolder
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(context, ImageWebViewActivity.class);
-                    intent.putExtra("key", photoItemList.get(getAdapterPosition()));
+                    intent.putExtra("photoItem", photoItemList.get(getAdapterPosition()));
                     context.startActivity(intent);
                 }
             });

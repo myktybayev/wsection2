@@ -10,6 +10,7 @@ import android.widget.Button;
 
 import kz.project.section2.ui.photos.PhotosFragment;
 import kz.project.section2.ui.skills.SkillsFragment;
+import kz.project.section2.ui.videos.VideoFragment;
 
 public class MainActivity extends AppCompatActivity {
     Button btnHome, btnSkills, btnPhotos, btnVideos;
@@ -48,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 if (view.getId() == R.id.btnVideos) {
-                    switchFragment(new PhotosFragment());
+                    switchFragment(new VideoFragment());
 
                     btnVideos.setBackground(getDrawable(R.drawable.border_grey));
                 }

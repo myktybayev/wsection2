@@ -195,5 +195,4 @@ public class SkillsFragment extends Fragment {
         }
     }
 
-
 }

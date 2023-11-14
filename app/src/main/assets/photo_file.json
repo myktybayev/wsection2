@@ -1,0 +1,104 @@
+[
+  {
+    "photoId": 1,
+    "imagePath": "R.drawable.image.png",
+    "popularity": 230,
+    "visit": 3500
+  },
+  {
+    "photoId": 2,
+    "imagePath": "R.drawable.image1.png",
+    "popularity": 330,
+    "visit": 3600
+  },
+  {
+    "photoId": 3,
+    "imagePath": "R.drawable.image2.png",
+    "popularity": 430,
+    "visit": 3700
+  },
+  {
+    "photoId": 4,
+    "imagePath": "R.drawable.image3.png",
+    "popularity": 530,
+    "visit": 3800
+  },
+  {
+    "photoId": 5,
+    "imagePath": "R.drawable.image.png",
+    "popularity": 630,
+    "visit": 3900
+  },
+  {
+    "photoId": 6,
+    "imagePath": "R.drawable.image.png",
+    "popularity": 630,
+    "visit": 3400
+  },
+  {
+    "photoId": 7,
+    "imagePath": "R.drawable.image.png",
+    "popularity": 700,
+    "visit": 3400
+  },
+  {
+    "photoId": 9,
+    "imagePath": "R.drawable.image.png",
+    "popularity": 720,
+    "visit": 3400
+  },
+  {
+    "photoId": 10,
+    "imagePath": "R.drawable.image.png",
+    "popularity": 730,
+    "visit": 3400
+  },
+  {
+    "photoId": 11,
+    "imagePath": "R.drawable.image.png",
+    "popularity": 740,
+    "visit": 3400
+  },
+  {
+    "photoId": 12,
+    "imagePath": "R.drawable.image.png",
+    "popularity": 750,
+    "visit": 3400
+  },
+  {
+    "photoId": 13,
+    "imagePath": "R.drawable.image.png",
+    "popularity": 13,
+    "visit": 3400
+  },
+  {
+    "photoId": 14,
+    "imagePath": "R.drawable.image.png",
+    "popularity": 14,
+    "visit": 3400
+  },
+  {
+    "photoId": 15,
+    "imagePath": "R.drawable.image.png",
+    "popularity": 15,
+    "visit": 3400
+  },
+  {
+    "photoId": 19,
+    "imagePath": "R.drawable.image.png",
+    "popularity": 19,
+    "visit": 3400
+  },
+  {
+    "photoId": 20,
+    "imagePath": "R.drawable.image.png",
+    "popularity": 20,
+    "visit": 3400
+  },
+  {
+    "photoId": 21,
+    "imagePath": "R.drawable.image.png",
+    "popularity": 21,
+    "visit": 3400
+  }
+]
