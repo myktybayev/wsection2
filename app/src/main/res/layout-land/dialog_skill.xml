@@ -26,7 +26,7 @@
         android:layout_above="@id/btnNext"
         android:textSize="18sp" />
 
-    <ImageView
+    <WebView
         android:id="@+id/skillImage"
         android:layout_width="250dp"
         android:layout_height="200dp"

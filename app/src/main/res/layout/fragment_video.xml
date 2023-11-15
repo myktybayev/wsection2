@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_marginRight="10dp"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:layout_marginRight="10dp">
 
     <TextView
         android:id="@+id/title"
@@ -28,16 +28,25 @@
             android:layout_weight="1"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/player"
-                android:layout_width="match_parent"
-                android:layout_height="400dp"
-                android:background="@color/black"
-                android:gravity="center"
-                android:padding="20dp"
-                android:text="Video playing"
-                android:textColor="@color/white"
-                android:textSize="30sp" />
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+
+                <VideoView
+                    android:id="@+id/videoView"
+                    android:layout_width="match_parent"
+                    android:layout_height="400dp"
+                    android:gravity="center"
+                    android:padding="20dp" />
+
+                <ProgressBar
+                    android:id="@+id/videoProgressBar"
+                    android:layout_width="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_height="400dp" />
+
+            </FrameLayout>
 
             <RelativeLayout
                 android:layout_width="wrap_content"
@@ -45,8 +54,9 @@
                 android:background="@color/black">
 
                 <TextView
-                    android:id="@+id/play"
+                    android:id="@+id/tv_play"
                     android:layout_width="50dp"
+                    android:enabled="false"
                     android:layout_height="50dp"
                     android:background="@drawable/baseline_play_arrow_24" />
 
@@ -55,14 +65,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="50dp"
                     android:layout_marginLeft="20dp"
-                    android:layout_toRightOf="@id/play"
+                    android:layout_toRightOf="@id/tv_play"
                     android:gravity="center"
-                    android:text="0:15 / 1:00"
+                    android:text="0:00 / 0:00"
                     android:textColor="@color/white"
                     android:textSize="30sp" />
 
                 <TextView
-                    android:id="@+id/sound"
+                    android:id="@+id/tv_sound"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_alignParentRight="true"
@@ -120,9 +130,9 @@
                 android:gravity="center_vertical"
                 android:paddingLeft="10dp"
                 android:text="12 comments"
+                android:textColor="@color/black"
                 android:textSize="20dp"
-                android:textStyle="italic"
-                android:textColor="@color/black" />
+                android:textStyle="italic" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerViewComment"
