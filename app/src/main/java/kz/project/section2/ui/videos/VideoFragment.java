@@ -205,7 +205,8 @@ public class VideoFragment extends Fragment implements ItemClick {
     }
 
     public void loadComments(Video video) {
-        commentCount.setText(commentItemList.size() + " comments");
+
+        commentCount.setText(video.getCommentItemList().size() + " comments");
         commentListAdapter = new CommentListAdapter(getActivity(), video.getCommentItemList());
         recyclerViewComment.setAdapter(commentListAdapter);
 
@@ -217,9 +218,9 @@ public class VideoFragment extends Fragment implements ItemClick {
         btn_comment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                commentItemList.add(new CommentItem("Localhost", et_comment.getText().toString()));
+                video.getCommentItemList().add(new CommentItem("Localhost", et_comment.getText().toString()));
                 commentListAdapter.notifyDataSetChanged();
-                commentCount.setText(commentItemList.size() + " comments");
+                commentCount.setText(video.getCommentItemList().size() + " comments");
                 et_comment.setText("");
             }
         });
