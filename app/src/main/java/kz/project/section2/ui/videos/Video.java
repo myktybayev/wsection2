@@ -4,12 +4,32 @@ import java.util.List;
 import kz.project.section2.ui.skills.SkillItem;
 
 public class Video {
+    String videoName;
     String videoPath;
     String videoDur;
+    List<CommentItem> commentItemList;
 
-    public Video(String videoPath, String videoDur) {
+    public Video(String videoName,String videoPath, String videoDur, List<CommentItem> commentItemList) {
+        this.videoName = videoName;
         this.videoPath = videoPath;
         this.videoDur = videoDur;
+        this.commentItemList = commentItemList;
+    }
+
+    public List<CommentItem> getCommentItemList() {
+        return commentItemList;
+    }
+
+    public void setCommentItemList(List<CommentItem> commentItemList) {
+        this.commentItemList = commentItemList;
+    }
+
+    public String getVideoName() {
+        return videoName;
+    }
+
+    public void setVideoName(String videoName) {
+        this.videoName = videoName;
     }
 
     public String getVideoPath() {

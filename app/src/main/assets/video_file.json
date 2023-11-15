@@ -1,0 +1,63 @@
+{
+  "name": "section2",
+  "desc": "banner, skills list, photo gallery, video player",
+  "videos": [
+    {
+      "videoName": "Sport",
+      "videoDur": "0:51",
+      "videoPath": "https://videocdn.bodybuilding.com/video/mp4/62000/62792m.mp4",
+      "comments": [
+        {
+          "from": "192.168",
+          "comment": "Hello"
+        },
+        {
+          "from": "192.178",
+          "comment": "How are you?"
+        },
+        {
+          "from": "192.188",
+          "comment": "Welcome to college"
+        }
+      ]
+    },
+    {
+      "videoName": "For Bigger Blazes",
+      "videoDur": "00:15",
+      "videoPath": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+      "comments": [
+        {
+          "from": "193.168",
+          "comment": "By Blender Foundation"
+        },
+        {
+          "from": "194.178",
+          "comment": "How are you?"
+        },
+        {
+          "from": "195.188",
+          "comment": "Welcome to IT"
+        }
+      ]
+    },
+    {
+      "videoName": "Elephant Dream",
+      "videoDur": "10:00",
+      "videoPath": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
+      "comments": [
+        {
+          "from": "192.168",
+          "comment": "Hello Elephant"
+        },
+        {
+          "from": "192.178",
+          "comment": "How are Dream"
+        },
+        {
+          "from": "192.188",
+          "comment": "Welcome to Dream"
+        }
+      ]
+    }
+  ]
+}
