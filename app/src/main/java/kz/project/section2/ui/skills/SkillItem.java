@@ -1,7 +1,5 @@
 package kz.project.section2.ui.skills;
 
-import java.util.List;
-
 public class SkillItem {
     String title;
     String desc;

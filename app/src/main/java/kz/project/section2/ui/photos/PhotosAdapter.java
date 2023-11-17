@@ -2,9 +2,6 @@ package kz.project.section2.ui.photos;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,19 +9,13 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.io.IOException;
-import java.net.URL;
 import java.util.List;
 
 import kz.project.section2.R;
-import kz.project.section2.ui.skills.ItemClick;
-import kz.project.section2.ui.skills.SkillChildrenAdapter;
-import kz.project.section2.ui.skills.SkillType;
 
 
 public class PhotosAdapter extends RecyclerView.Adapter<PhotosAdapter.ViewHolder> {

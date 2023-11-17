@@ -13,8 +13,6 @@ import java.util.List;
 
 import kz.project.section2.R;
 import kz.project.section2.ui.skills.ItemClick;
-import kz.project.section2.ui.skills.SkillChildrenAdapter;
-import kz.project.section2.ui.skills.SkillType;
 
 
 public class MoreVideoAdapter extends RecyclerView.Adapter<MoreVideoAdapter.ViewHolder> {

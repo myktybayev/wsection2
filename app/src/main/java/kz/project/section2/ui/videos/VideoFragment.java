@@ -12,7 +12,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.VideoView;
 
 import androidx.annotation.NonNull;
@@ -23,22 +22,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import kz.project.section2.R;
-import kz.project.section2.ui.photos.PhotoItem;
-import kz.project.section2.ui.photos.PhotosAdapter;
-import kz.project.section2.ui.skills.ItemClick;
-import kz.project.section2.ui.skills.SkillItem;
-import kz.project.section2.ui.skills.SkillType;
-import kz.project.section2.ui.skills.SkillsAdapter;
 
 public class VideoFragment extends Fragment implements ItemClick {
     View view;
@@ -61,7 +50,9 @@ public class VideoFragment extends Fragment implements ItemClick {
     int currentDuration = 0;
     int videoDuration;
     CountDownTimer countDownTimer;
-    MediaPlayer mediaPlayer;
+//    MediaPlayer mediaPlayer;
+
+    int minuteCount = 0;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_video, container, false);
@@ -99,66 +90,66 @@ public class VideoFragment extends Fragment implements ItemClick {
         moreVideoAdapter = new MoreVideoAdapter(getActivity(), videoList, this::onItemClick);
         recyclerViewMoreVideo.setAdapter(moreVideoAdapter);
 
-//        load from file
-
-        videoOnPreparedListener(videoList.get(0));
+        videoOnPreparedListener(videoList.get(1));
     }
-
 
     public void videoOnPreparedListener(Video video) {
 
         String vName = video.getVideoName();
         String vPath = video.getVideoPath();
         videoTitle.setText(vName);
+
         loadComments(video);
         videoSettingsByDefault();
 
-        /*
-        load from file res/raw directory
-        videoPath: blazes_video.mp4
-
         String packageName =  getContext().getPackageName();
-        String path = "android.resource://" + packageName + "/"+getResources().getIdentifier(vPath,"raw", packageName);
+        String path = "android.resource://" + packageName + "/raw/"+vPath;
+
         videoView.setVideoURI(Uri.parse(path));
-         */
-
         tv_duration.setText("0:00 / " + video.getVideoDur());
-        videoView.setVideoPath(vPath);
+        tv_play.setEnabled(true);
+        tv_sound.setEnabled(true);
+        videoProgressBar.setVisibility(View.GONE);
 
-        videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-            @Override
-            public void onPrepared(MediaPlayer mp) {
-                mediaPlayer = mp;
-                tv_play.setEnabled(true);
-                tv_sound.setEnabled(true);
-                videoProgressBar.setVisibility(View.GONE);
-                videoDuration = videoView.getDuration();
+//        double dur = (double) videoDuration / 100000;
+//        durFormat = String.format("%.2f", dur);
+//        tv_duration.setText("0:00 / " + durFormat);
 
-                double dur = (double) videoDuration / 100000;
-                durFormat = String.format("%.2f", dur);
-                tv_duration.setText("0:00 / " + durFormat);
+        String hh[] = video.getVideoDur().split(":");
+        //0:15
+        int timerLimit = Integer.parseInt(hh[0])*60000+Integer.parseInt(hh[1])*1000;
 
-                countDownTimer = new CountDownTimer(videoDuration, 1000) {
-                    public void onTick(long millisUntilFinished) {
-                        currentDuration++;
-                        String durText = "";
+                //15.000 - 10 sec
+                //100.000 - 100 sec
+                //1.000.000 - 1000 sec
 
-                        if (currentDuration <= 9) durText = "0:0" + currentDuration;
-                        else durText = "0:" + currentDuration;
+        Log.i("video_path", "timerLimit:"+timerLimit);
 
-                        tv_duration.setText(durText + " / " + durFormat);
+        countDownTimer = new CountDownTimer(timerLimit, 1000) {
+            public void onTick(long millisUntilFinished) {
+                currentDuration++;
+                String durText = "";
 
-                    }
+                Log.i("video_path", "countDownTimer:"+currentDuration);
 
-                    public void onFinish() {
-                    }
-                };
 
-                connectPlayButton();
-                connectMuteButton();
+                if (currentDuration <= 9) durText = "0:0"+currentDuration;
+                else if(currentDuration>=60){
+
+                    if((currentDuration%60)>=10) durText = currentDuration/60+":"+(currentDuration%60);
+                    else durText = currentDuration/60+":0"+(currentDuration%60);
+                }else durText = "0:"+currentDuration;
+
+                tv_duration.setText(durText +" / "+ video.getVideoDur());
 
             }
-        });
+
+            public void onFinish() {
+            }
+        };
+
+        connectPlayButton();
+        connectMuteButton();
     }
 
     public void connectPlayButton() {
@@ -182,10 +173,21 @@ public class VideoFragment extends Fragment implements ItemClick {
         tv_sound.setOnClickListener(view1 -> {
             if (mute) {
                 tv_sound.setBackgroundResource(R.drawable.baseline_volume_off_24);
-                mediaPlayer.setVolume(0f, 0f);
+                videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                    @Override
+                    public void onPrepared(MediaPlayer mediaPlayer) {
+                        mediaPlayer.setVolume(0f, 0f);
+                    }
+                });
+
             } else {
                 tv_sound.setBackgroundResource(R.drawable.baseline_volume_up_24);
-                mediaPlayer.setVolume(100f, 100f);
+                videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                    @Override
+                    public void onPrepared(MediaPlayer mediaPlayer) {
+                        mediaPlayer.setVolume(100f, 100f);
+                    }
+                });
             }
 
             mute = !mute;
@@ -214,7 +216,6 @@ public class VideoFragment extends Fragment implements ItemClick {
                 LinearLayoutManager.VERTICAL);
         recyclerViewComment.addItemDecoration(dividerItemDecoration);
 
-
         btn_comment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -227,7 +228,6 @@ public class VideoFragment extends Fragment implements ItemClick {
     }
 
     public void getDataFromJsonFile() {
-        String json = null;
         try {
             InputStream is = getActivity().getAssets().open("video_file.json");
             byte[] buffer = new byte[is.available()];
@@ -235,7 +235,7 @@ public class VideoFragment extends Fragment implements ItemClick {
             is.read(buffer);
             is.close();
 
-            json = new String(buffer, "UTF-8");
+            String json = new String(buffer, "UTF-8");
             createModelFromFile(json);
 
         } catch (Exception ex) {
@@ -254,7 +254,6 @@ public class VideoFragment extends Fragment implements ItemClick {
                 String videoName = videoObject.getString("videoName");
                 String videoPath = videoObject.getString("videoPath");
                 String videoDur = videoObject.getString("videoDur");
-
 
                 JSONArray commentArray = videoObject.getJSONArray("comments");
                 List<CommentItem> commentItemList = new ArrayList<>();

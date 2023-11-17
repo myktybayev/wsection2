@@ -4,8 +4,8 @@
   "videos": [
     {
       "videoName": "Sport",
-      "videoDur": "0:51",
-      "videoPath": "https://videocdn.bodybuilding.com/video/mp4/62000/62792m.mp4",
+      "videoDur": "0:15",
+      "videoPath": "blazes_video",
       "comments": [
         {
           "from": "192.168",
@@ -22,9 +22,9 @@
       ]
     },
     {
-      "videoName": "For Bigger Blazes",
-      "videoDur": "00:15",
-      "videoPath": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+      "videoName": "Elephants Dream",
+      "videoDur": "10:53",
+      "videoPath": "elephants",
       "comments": [
         {
           "from": "193.168",
@@ -43,7 +43,7 @@
     {
       "videoName": "Elephant Dream",
       "videoDur": "10:00",
-      "videoPath": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
+      "videoPath": "blazes_video",
       "comments": [
         {
           "from": "192.168",

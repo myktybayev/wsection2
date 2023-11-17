@@ -1,8 +1,6 @@
 package kz.project.section2.ui.videos;
 import java.util.List;
 
-import kz.project.section2.ui.skills.SkillItem;
-
 public class Video {
     String videoName;
     String videoPath;
